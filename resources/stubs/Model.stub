@@ -1,0 +1,13 @@
+<?php
+
+namespace Modules\{{modulename}}\Entities;
+
+use Illuminate\Database\Eloquent\Model;
+
+class {{modelname}} extends Model
+{
+    protected $guarded = ['id'];
+    protected $table = '{{tablename}}';
+
+    public $timestamps = false;
+}

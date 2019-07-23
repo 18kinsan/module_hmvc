@@ -1,0 +1,7 @@
+@extends('{{moduleNameLowerCase}}::layouts.master')
+@section('content')
+    <h1>Ini table untuk view {{viewname}}</h1>
+    <table>
+        {{displaynames}}<th>Action</th>
+    </table>
+@endsection

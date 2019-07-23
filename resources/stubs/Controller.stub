@@ -1,0 +1,48 @@
+<?php
+
+namespace Modules\{{modulename}}\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Modules\{{modulename}}\Entities\{{modelname}};
+use App\RecordsModel;
+use App\TableModel;
+
+class {{modelname}}Controller extends Controller
+{
+    public function index()
+    {
+        $tablelists = TableModel::where('table_name', '{{tablename}}')->first();
+        $records = RecordsModel::where('table_id', $tablelists->id)->get();
+        return view('{{modelNameSingularLowerCase}}::index', compact('records'));
+    }
+
+    public function store(Request $request)
+    {
+        ${{modelNameSingularLowerCase}} = {{modelname}}::create($request->all());
+
+        return response()->json(${{modelNameSingularLowerCase}}, 201);
+    }
+
+    public function show($id)
+    {
+        ${{modelNameSingularLowerCase}} = {{modelname}}::findOrFail($id);
+
+        return response()->json(${{modelNameSingularLowerCase}});
+    }
+
+    public function update(Request $request, $id)
+    {
+        ${{modelNameSingularLowerCase}} = {{modelname}}::findOrFail($id);
+        ${{modelNameSingularLowerCase}}->update($request->all());
+
+        return response()->json(${{modelNameSingularLowerCase}}, 200);
+    }
+
+    public function destroy($id)
+    {
+        {{modelname}}::destroy($id);
+
+        return response()->json(null, 204);
+    }
+}
